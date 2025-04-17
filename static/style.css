@@ -1,0 +1,334 @@
+body {
+    background-color: #fafafa;
+    color: #222;
+    font-family: "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.upload-section {
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+}
+
+#upload-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.file-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #000;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.file-label input[type=file] {
+    display: none;
+}
+
+#submit-button {
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#submit-button:hover {
+    background-color: #333;
+}
+
+.flashcard-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.flashcard-2col {
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    height: 400px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fff;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.left-panel {
+    width: 35%;
+    padding: 30px 20px;
+    border-right: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fff;
+}
+
+.left-panel h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.left-panel p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.right-panel {
+    width: 65%;
+    padding: 25px;
+    overflow-y: auto;
+    max-height: 400px;
+    text-align: left;
+    scrollbar-width: thin;
+}
+
+.right-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.right-panel::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.meaning-block {
+    margin-bottom: 25px;
+}
+
+.meaning-block h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.meaning-block ul {
+    padding-left: 20px;
+    list-style-type: disc;
+    font-size: 15px;
+}
+
+.meaning-block li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.zh {
+    color: #555;
+    font-size: 14px;
+    margin-top: 2px;
+    display: inline-block;
+}
+
+.navigation {
+    margin: 30px;
+}
+
+button {
+    padding: 10px 24px;
+    margin: 0 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+.card-item {
+    display: none; /* 先隱藏所有卡片，由 JS 控制顯示哪一張 */
+}
+
+.search-bar-wrapper {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#upload-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+    width: 500px;
+    max-width: 90%;
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    padding: 12px 20px;
+    flex: 1;
+    font-size: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.search-input input[type="file"] {
+    display: none;
+}
+
+.search-input span {
+    color: #555;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-button:hover {
+    background-color: #333;
+}
+
+.progress-bar-wrapper {
+    width: 300px;
+    background-color: #f1f1f1;
+    height: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #000;
+    transition: width 0.2s ease;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: #000;
+    border-bottom: 1px solid #ccc;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.navbar .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.navbar .nav-link:hover {
+    text-decoration: underline;
+}
+
+.card-item {
+    display: none;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.guide-container {
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: left;
+}
+
+.guide-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.guide-steps {
+    font-size: 16px;
+    line-height: 1.8;
+    padding-left: 20px;
+}
+
+.guide-steps li {
+    margin-bottom: 12px;
+}
+
+.start-btn {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 28px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.start-btn:hover {
+    background-color: #333;
+}
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>英文單字學習工具</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon_w.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .home-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            flex-direction: column;
+        }
+
+        .home-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .start-btn {
+            padding: 12px 28px;
+            font-size: 18px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .start-btn:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+        <div class="home-title">歡迎使用英文單字學習工具</div>
+        <a href="{{ url_for('index') }}">
+            <button class="start-btn">開始使用</button>
+        </a>
+    </div>
+</body>
+</html>

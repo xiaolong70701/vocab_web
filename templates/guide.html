@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>使用教學｜英文單字學習平台</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon_w.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="nav-logo">
+                <img src="{{ url_for('static', filename='favicon_b.ico') }}" class="logo-icon" alt="Logo">
+                <span class="logo-text">英文單字學習平台</span>
+            </a>
+        </div>
+        <div class="navbar-right">
+            <a href="/" class="nav-link">首頁</a>
+            <a href="{{ url_for('guide') }}" class="nav-link">使用教學</a>
+        </div>
+    </nav>
+
+    <div class="guide-container">
+        <h1>如何使用本平台？</h1>
+        <ol class="guide-steps">
+            <li>準備好一份英文單字清單（格式支援 CSV 或 Excel 檔）。</li>
+            <li>點擊搜尋列，選擇你要查詢的單字檔案。</li>
+            <li>系統會自動查詢每個單字的：
+                <ul>
+                    <li>英式 / 美式音標</li>
+                    <li>中文意思</li>
+                    <li>例句與翻譯</li>
+                </ul>
+            </li>
+            <li>查詢完成後，你可以一張一張地翻閱字卡進行學習。</li>
+            <li>點選上下按鈕切換單字，享受 Quizlet 式的練習體驗。</li>
+        </ol>
+
+        <a href="{{ url_for('index') }}">
+            <button class="start-btn">開始查詢</button>
+        </a>
+    </div>
+</body>
+</html>

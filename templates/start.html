@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>英文單字學習卡</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon_w.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 導覽列 -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/" class="nav-logo">
+                <img src="{{ url_for('static', filename='favicon_b.ico') }}" alt="Logo" class="logo-icon">
+                <span class="logo-text">英文單字學習平台</span>
+            </a>
+        </div>
+        <div class="navbar-right">
+            <a href="/" class="nav-link">首頁</a>
+            <a href="/guide" class="nav-link">使用教學</a>
+        </div>
+    </nav>
+
+    <!-- 搜尋列 -->
+    <div class="search-bar-wrapper">
+        <form id="upload-form" action="/start" method="post" enctype="multipart/form-data">
+            <label class="search-input">
+                <input type="file" name="file" id="file-input" accept=".csv,.xlsx" required>
+                <span id="file-name">請選擇單字檔案</span>
+            </label>
+            <button type="submit" id="submit-button" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+
+        <div id="progress-container" style="display: none;">
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar"></div>
+            </div>
+            <p>查詢中，請稍候...</p>
+        </div>
+    </div>
+
+    {% if combined %}
+    <div class="flashcard-wrapper">
+        {% for word, item in combined %}
+        <div class="flashcard-2col card-item" id="card{{ loop.index0 }}">
+            <div class="left-panel">
+                <h2>{{ item.word }}</h2>
+                <p>英式音標：{{ item.DJ }}</p>
+                <p>美式音標：{{ item.KK }}</p>
+            </div>
+            <div class="right-panel">
+                {% for definition in item.definitions %}
+                <div class="meaning-block">
+                    <h3>{{ definition.meaning }}</h3>
+                    <ul>
+                        {% for example in definition.examples %}
+                        <li>
+                            {{ example.en | replace(item.word, '<strong>' ~ item.word ~ '</strong>') | safe }}
+                            <br><span class="zh">{{ example.zh }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="navigation">
+        <button id="prev">上一張</button>
+        <button id="next">下一張</button>
+    </div>
+    {% endif %}
+
+    <script>
+        // 顯示上傳檔案名稱
+        document.getElementById('file-input').addEventListener('change', function (e) {
+            const fileName = e.target.files[0]?.name || '請選擇單字檔案';
+            document.getElementById('file-name').textContent = fileName;
+        });
+
+        // 提交表單後顯示進度條動畫
+        document.getElementById('upload-form').addEventListener('submit', function () {
+            document.getElementById('submit-button').style.display = 'none';
+            document.querySelector('.search-input').style.display = 'none';
+            document.getElementById('progress-container').style.display = 'block';
+
+            let bar = document.querySelector('.progress-bar');
+            let width = 0;
+            setInterval(() => {
+                width = (width + 1) % 100;
+                bar.style.width = width + '%';
+            }, 80);
+        });
+
+        // 字卡切換功能
+        const cards = document.querySelectorAll(".card-item");
+        let currentCard = 0;
+
+        function showCard(index) {
+            cards.forEach((card, i) => {
+                card.style.display = (i === index) ? 'flex' : 'none';
+            });
+        }
+
+        if (cards.length > 0) {
+            showCard(currentCard);
+            document.getElementById('prev').addEventListener('click', () => {
+                if (currentCard > 0) currentCard--;
+                showCard(currentCard);
+            });
+
+            document.getElementById('next').addEventListener('click', () => {
+                if (currentCard < cards.length - 1) currentCard++;
+                showCard(currentCard);
+            });
+        }
+    </script>
+</body>
+</html>
